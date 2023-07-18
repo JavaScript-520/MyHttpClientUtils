@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.13</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>cn.xw</groupId>
+    <artifactId>MyHttpClientUtils</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>MyHttpClientUtils</name>
+    <description>MyHttpClientUtils</description>
+
+    <dependencies>
+        <!--Spring Boot的核心启动器，包含了自动配置、日志和YAML-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <!--去掉logback配置，要不然冲突-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- 引入SpringBoot的log4j2依赖启动坐标；这坐标包含具体的log4j2的坐标和连接Slf4j的适配器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <!--基本的simple，就是SLF4J提供的基本日志实现-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <!--SpringBootWeb启动依赖坐标-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--Lombok坐标导入-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- 导入Apache的客户端调用工具依赖坐标-->
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>5.2.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--配置maven编译版本-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source><!--源代码使用的JDK-->
+                    <target>1.8</target><!--target需要生成的目标class文件的编译版本-->
+                    <encoding>UTF-8</encoding><!--字符集编码，防止中文乱码-->
+                    <failOnError>true</failOnError><!--指示即使存在编译错误，构建是否仍将继续-->
+                    <failOnWarning>false</failOnWarning><!--指示即使存在编译警告，构建是否仍将继续-->
+                    <showDeprecation>false</showDeprecation><!--设置是否显示使用不推荐API的源位置-->
+                    <showWarnings>false</showWarnings><!--设为true若要显示编译警告，请执行以下操作-->
+                    <meminitial>128M</meminitial><!--编译器使用的初始化内存-->
+                    <maxmem>512M</maxmem><!--编译器使用的最大内存-->
+                </configuration>
+            </plugin>
+            <!--Maven构建工具的插件-->
+            <!--该文件可以使用java -jar命令直接启动应用程序，无需事先安装或配置应用程序-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
