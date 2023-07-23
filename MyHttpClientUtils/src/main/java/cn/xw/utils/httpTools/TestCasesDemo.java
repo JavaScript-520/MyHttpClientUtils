@@ -31,7 +31,7 @@ public class TestCasesDemo {
         String reqBody = "{\"id\":1,\"name\":\"张三\",\"sex\":\"男\",\"age\":20,\"address\":\"北京市\"}";
 
         // 基本测试方法
-        //getOne(headers);
+        getOne(headers);
         //getOneByStudent(requestParam, reqBody);
         //saveGet(requestParam);
         //savePost(reqBody);
@@ -44,7 +44,7 @@ public class TestCasesDemo {
         // 说明：本工具类可以支持https请求，若服务端需要认证我们客户端时，我们可以设置HttpClientUtils类里的
         //  KEYSTORE_FILE_STR、KEYSTORE_PASSWORD、KEYSTORE_PRI_KEY_PASSWORD参数
         // 示例(只要地址正确，参数按照需求传入)
-        getSSL(headers);
+        //getSSL(headers);
     }
 
     /**
@@ -57,7 +57,7 @@ public class TestCasesDemo {
         // //    请求这类资源时，最多访问10个连接同时访问，第11次访问时得等之前的同路由下的请求归还连接池管理器
         customRouteMap.put("http://192.168.0.1:8888", 10);
         customRouteMap.put("https://192.168.0.2:9999", 20);
-        customRouteMap.put("https://www.xiaofeng.com", 15);
+        customRouteMap.put("https://www.xiaofeng.com:80", 15);
         HttpClientUtils.customMaxPerRoute(customRouteMap);
 
         HttpResult get = new HttpClientUtils.Builder()

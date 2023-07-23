@@ -265,14 +265,14 @@ public class HttpClientUtils {
         // 示例数据
         // customRouteMap.put("http://192.168.0.1:8888",10);
         // customRouteMap.put("https://192.168.0.2:9999",20);
-        // customRouteMap.put("https://www.xiaofeng.com",15);
+        // customRouteMap.put("https://www.xiaofeng.com:80",15);
         if (customRouteMap == null || customRouteMap.isEmpty()) {
             log.warn("传入自定义路由最大连接数据为空！");
         } else {
             for (Map.Entry<String, Integer> customRoute : customRouteMap.entrySet()) {
-                HttpRoute httpRoute = new HttpRoute(new HttpHost(customRoute.getKey()));
-                connectionManager.setMaxPerRoute(httpRoute, customRoute.getValue());
-                connectionManager.close();
+                URI uri = URI.create(customRoute.getKey());
+                HttpRoute route = new HttpRoute(new HttpHost(uri.getHost(), uri.getPort()));
+                connectionManager.setMaxPerRoute(route, customRoute.getValue());
             }
         }
     }
